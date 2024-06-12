@@ -1,0 +1,92 @@
+body{
+    background-color: #55AD9B;
+    font-family: "poppins", Arial, Helvetica, sans-serif;
+}
+
+.container_box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.heading{
+    font-size: 60px;
+    color: rgb(66, 73, 75);
+}
+
+.textarea {
+    padding-top: 10px;
+    padding-left: 10px;
+    border: 1px solid black;
+    background-color: #939191;
+    color: white;
+    
+}
+.textarea:hover{
+    border: 1px solid black;
+   
+}
+.btn{
+    margin-top: 30px;
+    height: 40px;
+    width: 80px;
+}
+
+.result{
+   
+    width: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+/* CSS */
+.button-41 {
+    margin-top: 20px;
+  background-color: initial;
+  background-image: linear-gradient(-180deg, #00D775, #00BD68);
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Inter,-apple-system,system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+  text-align: center;
+  height: 44px;
+  line-height: 44px;
+  outline: 0;
+  overflow: hidden;
+  padding: 0 20px;
+  pointer-events: auto;
+  position: relative;
+  text-align: center;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: top;
+  white-space: nowrap;
+  width: 100px;
+  z-index: 9;
+  border: 0;
+}
+
+.button-41:hover {
+  background: #00bd68;
+}
+
+
+
+
+@media screen and (max-width: 450px) {
+
+    .result{
+        
+        width: 250px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
