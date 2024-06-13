@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect , useRef} from 'react'
 import "./homepage.css"
 import axios from 'axios'
 
@@ -8,6 +8,8 @@ function Homepage() {
     const [history, setHistory] = useState([]);
     const [loading, setLoading] = useState(false);
     const [copy, setCopy] = useState("Copy");
+
+    const answerRef = useRef(null);
 
     // Load history from localStorage on component mount
     useEffect(() => {
@@ -21,6 +23,12 @@ function Homepage() {
     useEffect(() => {
         localStorage.setItem('chatHistory', JSON.stringify(history));
     }, [history]);
+
+    useEffect(() => {
+        if (answerRef.current) {
+            answerRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [answer]);
 
     async function generateAnswer() {
         setLoading(true);
@@ -78,6 +86,12 @@ function Homepage() {
         localStorage.removeItem('chatHistory');
     }
 
+
+    function clearInput() {
+        setQuestion("");
+        setAnswer("");
+    }
+
     return (
         <div className="container_box">
             <div className="sidebar">
@@ -87,7 +101,9 @@ function Homepage() {
                     {history.map((entry, index) => (
                         <li key={index}>
                             <p><strong>Q:</strong> {entry.question}</p>
-                            <p><strong>A:</strong> {entry.answer}</p>
+                            <p><strong>A:</strong> {entry.answer}<br/>
+                            <button className='copy-btn' onClick={copyToClipboard}>{copy}</button>
+                            </p>
                             <button className='edit_button' onClick={() => editEntry(index)}>Edit</button>
                             <button className="delete_button" onClick={() => deleteEntry(index)}>Delete</button>
                         </li>
@@ -104,8 +120,9 @@ function Homepage() {
                     placeholder='Ask me anything'
                 />
                 <button className="button-41" role="button" onClick={generateAnswer}>Generate</button>
+                <button className="button-41 clear" role="button" onClick={clearInput}>Clear</button>
                 {loading && <div className="bars"></div>}
-                <div className='result'>
+                <div className='result' ref={answerRef}>
                     <p>{answer}</p>
                     {answer && <button onClick={copyToClipboard}>{copy}</button>}
                 </div>
