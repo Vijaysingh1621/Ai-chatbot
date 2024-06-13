@@ -37,9 +37,7 @@
     cursor: pointer;
 }
 
-.sidebar button:hover {
-    background-color: #f0f0f0;
-}
+
 
 .main_content {
     width: 75%;
@@ -47,6 +45,8 @@
 }
 
 .heading {
+    font-weight:700;
+    font-family: "poppins",Arial, Helvetica, sans-serif;
     font-size: 2em;
     margin-bottom: 20px;
 }
@@ -56,12 +56,16 @@
     margin-bottom: 20px;
     padding: 10px;
     font-size: 1em;
+    font-family: "poppins"Arial, Helvetica, sans-serif;
     border: 1px solid #ddd;
     border-radius: 5px;
 }
 
 .button-41 { 
     margin-left: 10px;
+    font-weight: 600;
+    font-size: 13.5px;
+    font-family: "poppins",Arial, Helvetica, sans-serif;
     background-color: #007bff;
     color: white;
     padding: 10px 20px;
@@ -74,47 +78,80 @@
     background-color: #0056b3;
 }
 
-.lds-facebook {
-    display: block;
-    position: relative;
-    width: 80px;
-    height: 80px;
+.clear_button{
+    margin-left: 0px;
+    font-weight: 600;
+    font-family: "poppins",Arial, Helvetica, sans-serif;
+    background-color: #88888a;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.clear_button:hover{
+    background-color: rgb(0, 0, 0);
+}
+.edit_button{
+    margin-left: 10px;
+    font-weight: 600;
+    font-family: "poppins",Arial, Helvetica, sans-serif;
+    background-color: #3f7db7;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.delete_button{
+    margin-left: 10px;
+    font-weight: 600;
+    font-family: "poppins",Arial, Helvetica, sans-serif;
+    background-color: #f43123;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-.lds-facebook div {
-    display: inline-block;
-    position: absolute;
-    left: 8px;
-    width: 16px;
-    background: #007bff;
-    animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+.edit_button:hover{
+    background-color: #295a8e;
 }
-
-.lds-facebook div:nth-child(1) {
-    left: 8px;
-    animation-delay: -0.24s;
+.delete_button:hover{
+    background-color: #92170f;
 }
-
-.lds-facebook div:nth-child(2) {
-    left: 32px;
-    animation-delay: -0.12s;
-}
-
-.lds-facebook div:nth-child(3) {
-    left: 56px;
-    animation-delay: 0;
-}
-
-@keyframes lds-facebook {
-    0% {
-        top: 8px;
-        height: 64px;
+.bars {
+    width: 38.4px;
+    height: 34.2px;
+    --c: linear-gradient(#474bff  0 0);
+    background: var(--c) 0%   50%,
+         var(--c) 50%  50%,
+         var(--c) 100% 50%;
+    background-size: 10.1px 50%;
+    background-repeat: no-repeat;
+    animation: bars-wk19tf 1s infinite linear;
+ }
+ 
+ @keyframes bars-wk19tf {
+    20% {
+       background-position: 0% 0%  ,50% 50% ,100% 50%;
     }
-    50%, 100% {
-        top: 24px;
-        height: 32px;
+ 
+    40% {
+       background-position: 0% 100%,50% 0%  ,100% 50%;
     }
-}
+ 
+    60% {
+       background-position: 0% 50% ,50% 100%,100% 0%;
+    }
+ 
+    80% {
+       background-position: 0% 50% ,50% 50% ,100% 100%;
+    }
+ }
+
+
 
 .result {
     margin: 20px 0;
@@ -127,8 +164,10 @@
 }
 
 .result p {
+    font-family: "poppins",Arial, Helvetica, sans-serif;
     margin: 0;
-    font-weight: bold;
+    margin-top:30px;
+    font-weight: 600;
     color: black;
 }
 
@@ -146,4 +185,59 @@
 
 .result button:hover {
     background-color: #0056b3;
+}
+
+
+@media only screen and (max-width: 576px){
+    .heading {
+        text-align: center;
+        font-size: 1.8em;
+        margin-bottom: 20px;
+    }
+    .container_box {
+        display: flex;
+        flex-direction: column;
+        font-family: Arial, sans-serif;
+        height: 100vh;
+    }
+    .sidebar {
+        width: auto;
+        padding: 20px;
+        background-color: #f4f4f4;
+        border-right: 1px solid #ddd;
+    }
+    .main_content {
+        width: auto;
+        padding: 20px;
+    }
+
+    .bars {
+        margin-top: 10px;
+        width: 38.4px;
+        height: 34.2px;
+        --c: linear-gradient(#474bff  0 0);
+        background: var(--c) 0%   50%,
+             var(--c) 50%  50%,
+             var(--c) 100% 50%;
+        background-size: 10.1px 50%;
+        background-repeat: no-repeat;
+        animation: bars-wk19tf 1s infinite linear;
+     }
+    .result {
+        margin: 20px -10px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        width: 100%;
+        position: relative;
+    }
+    .result p {
+        font-family: "poppins",Arial, Helvetica, sans-serif;
+        margin: 0;
+        font-size: 0.9rem;
+        margin-top:30px;
+        font-weight: 600;
+        color: black;
+    }
 }
