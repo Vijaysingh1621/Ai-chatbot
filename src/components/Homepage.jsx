@@ -108,6 +108,7 @@ function Homepage() {
             <div className="sidebar">
                 <h2>History</h2>
                 <button className="clear_button" onClick={clearHistory}>Clear History</button>
+                <div className="history_record">
                 <ul>
                     {history.map((entry, index) => (
                         <li key={index}>
@@ -122,6 +123,7 @@ function Homepage() {
                         </li>
                     ))}
                 </ul>
+                </div>
             </div>
             <div className="main_content">
                 <h1 className="heading">AI Chatbot</h1>
@@ -138,7 +140,7 @@ function Homepage() {
                 {loading && <div className="bars"></div>}
                 <div className='result' ref={answerRef}>
                     <p><Markdown>{answer}</Markdown></p>
-                    {answer && <button onClick={() => copyToClipboard(history.length - 1)}>Copy</button>}
+                    {answer && <button onClick={() =>setCopy("Copied")}>{copy}</button>}
                 </div>
             </div>
         </div>

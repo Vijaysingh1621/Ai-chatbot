@@ -1,8 +1,9 @@
 .container_box {
     display: flex;
     flex-direction: row;
-    font-family: Arial, sans-serif;
-    height: 100vh;
+    font-family: "poppins",Arial, sans-serif;
+    
+    
 }
 
 .sidebar {
@@ -10,6 +11,8 @@
     padding: 20px;
     background-color: #f4f4f4;
     border-right: 1px solid #ddd;
+    height: auto;
+   
 }
 
 .sidebar h2 {
@@ -54,6 +57,7 @@
 .main_content {
     width: 75%;
     padding: 20px;
+    height: 92vh;
 }
 
 .heading {
