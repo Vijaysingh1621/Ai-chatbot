@@ -151,6 +151,7 @@
 .bars {
     width: 38.4px;
     height: 34.2px;
+    margin-left: 10px;
     --c: linear-gradient(#474bff  0 0);
     background: var(--c) 0%   50%,
          var(--c) 50%  50%,
