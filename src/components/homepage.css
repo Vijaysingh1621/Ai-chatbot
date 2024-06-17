@@ -68,6 +68,8 @@
 }
 
 .inputBox {
+    display: flex;
+    display: inline;
     width: 70%;
     margin-bottom: 20px;
     padding: 10px;
@@ -76,6 +78,25 @@
     border: 1px solid #ddd;
     border-radius: 5px;
 }
+
+.mic_icon{
+    height: 50px;
+    width: 50px;
+    background-color:rgb(236, 236, 236);
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: flex;
+    display: inline-block;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    height: 38px;
+    width: 40px;
+    
+}
+
+
+
 
 .button-41 { 
     margin-left: 10px;
@@ -241,6 +262,10 @@
     .main_content {
         width: auto;
         padding: 20px;
+    }
+
+    .inputBox{
+        width: 80%;
     }
 
     .bars {
