@@ -21,7 +21,9 @@ function Homepage() {
       useEffect(() => {
         // Update question state when transcript changes and listening stops
         if (!listening && transcript) {
+            
             setQuestion(prevQuestion => prevQuestion + transcript);
+           
         }
     }, [transcript, listening]);
         
@@ -113,11 +115,13 @@ function Homepage() {
     const handleListen = () => {
         if (listening) {
           SpeechRecognition.stopListening();
-          setQuestion(...transcript,transcript);
+          setQuestion(...transcript,transcript); 
           
         } else {
           SpeechRecognition.startListening({ continuous: false });
           resetTranscript
+          
+          
         }
       };
     
@@ -165,7 +169,6 @@ function Homepage() {
                 <h1 className="heading">AI Chatbot</h1>
                 <input
                     type="text"
-                    
                     value={question}
                     onChange={(e) => setQuestion(e.target.value)}
                     onKeyDown={handleKeyDown}
