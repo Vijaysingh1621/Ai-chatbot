@@ -1,29 +1,32 @@
+import "regenerator-runtime/runtime";
 import React, { useState, useEffect, useRef } from 'react';
-import useSpeechToText from '../useSpeechToText';
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import './homepage.css';
 import axios from 'axios';
 import Markdown from 'react-markdown';
 
 function Homepage() {
 
-    const { isListening, transcript, startListening, stopListening } = useSpeechToText({ continuous: true });
-
-    const startStopListening = () => {
-        if (isListening) {
-            stopVoiceInput();
-        } else {
-            startListening();
+    const {
+        transcript,
+        listening,
+        resetTranscript,
+        browserSupportsSpeechRecognition
+      } = useSpeechRecognition();
+    
+      if (!browserSupportsSpeechRecognition) {
+        return alert("Browser doesn't support speech recognition.");
+      }
+    
+      useEffect(() => {
+        // Update question state when transcript changes and listening stops
+        if (!listening && transcript) {
+            setQuestion(prevQuestion => prevQuestion + transcript);
         }
-    };
-
-    const stopVoiceInput = () => {
-
-        setQuestion(prevVal => prevVal + (transcript.length ? (prevVal.length ? ' ' : '') + transcript : ''));
-        stopListening();
-        setQuestion(prevVal)
+    }, [transcript, listening]);
         
         
-    };
+    
 
     const [question, setQuestion] = useState("");
     const [answer, setAnswer] = useState("");
@@ -62,7 +65,7 @@ function Homepage() {
                 data: {
                     contents: [
                         {
-                            parts: [{ text: question }]
+                            parts: [{ text: question+transcript}]
                         },
                     ],
                 },
@@ -86,7 +89,7 @@ function Homepage() {
 
     function editEntry(index) {
         const entry = history[index];
-        setQuestion(entry.question);
+        setQuestion(entry.question+transcript);
     }
 
     function copyToClipboard(index) {
@@ -105,6 +108,20 @@ function Homepage() {
         });
     }
 
+
+
+    const handleListen = () => {
+        if (listening) {
+          SpeechRecognition.stopListening();
+          setQuestion(...transcript,transcript);
+          
+        } else {
+          SpeechRecognition.startListening({ continuous: false });
+          resetTranscript
+        }
+      };
+    
+
     function handleKeyDown(event) {
         if (event.key === 'Enter') {
             generateAnswer();
@@ -119,6 +136,7 @@ function Homepage() {
     function clearInput() {
         setQuestion("");
         setAnswer("");
+        resetTranscript()
     }
 
     return (
@@ -148,7 +166,7 @@ function Homepage() {
                 <input
                     type="text"
                     
-                    value={isListening ? question + " "+transcript:question}
+                    value={question}
                     onChange={(e) => setQuestion(e.target.value)}
                     onKeyDown={handleKeyDown}
                     className='inputBox'
@@ -156,8 +174,8 @@ function Homepage() {
                 />
 
                 
-                    <div className="mic_icon"  onClick={startStopListening}  style={{backgroundColor:isListening?"red":"#ECECEC"}}>
-                    <svg style={{marginLeft:"10px",marginRight:"10px",marginTop:"6px",marginBottom:"-2px"}} xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill={isListening? "white" :"currentColor"} class="bi bi-mic" viewBox="0 0 16 16">
+                    <div className="mic_icon" onClick={()=>handleListen()} style={{backgroundColor:listening?"red":"#ECECEC"}}>
+                    <svg style={{marginLeft:"8px",marginRight:"10px",marginTop:"6px",marginBottom:"-7px"}} xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill= {listening?"white":"currentColor"} class="bi bi-mic" viewBox="0 0 16 16">
                             <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5"/>
                             <path d="M10 8a2 2 0 1 1-4 0V3a2 2 0 1 1 4 0zM8 0a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V3a3 3 0 0 0-3-3"/>
                             </svg>
