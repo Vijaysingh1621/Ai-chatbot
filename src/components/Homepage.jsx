@@ -4,6 +4,7 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 import './homepage.css';
 import axios from 'axios';
 import Markdown from 'react-markdown';
+import DisabledContext from "antd/es/config-provider/DisabledContext";
 
 function Homepage() {
 
@@ -35,6 +36,7 @@ function Homepage() {
     const [history, setHistory] = useState([]);
     const [loading, setLoading] = useState(false);
     const [copy, setCopy] = useState("Copy");
+    const [buttonText,setButtonText]=useState("Generate")
 
     const answerRef = useRef(null);
 
@@ -57,7 +59,10 @@ function Homepage() {
         }
     }, [answer]);
 
-    async function generateAnswer() {
+    async function generateAnswer(event) {
+        event.preventDefault();
+       
+        setButtonText("Generate")
         setLoading(true);
         setAnswer("loading... it might take up to 10 seconds");
         try {
@@ -92,6 +97,8 @@ function Homepage() {
     function editEntry(index) {
         const entry = history[index];
         setQuestion(entry.question+transcript);
+        setButtonText("Update")
+        
     }
 
     function copyToClipboard(index) {
@@ -118,9 +125,12 @@ function Homepage() {
           setQuestion(...transcript,transcript); 
           
           
+          
         } else {
           SpeechRecognition.startListening({ continuous: false });
           resetTranscript
+          setQuestion("") // reset the question
+          
           
           
         }
@@ -129,7 +139,12 @@ function Homepage() {
 
     function handleKeyDown(event) {
         if (event.key === 'Enter') {
-            generateAnswer();
+             // Prevent form submission if the input is empty
+            if (question.trim() === '') {
+                return;
+            } else {
+                generateAnswer(event);
+            }
         }
     }
 
@@ -168,13 +183,16 @@ function Homepage() {
             </div>
             <div className="main_content">
                 <h1 className="heading">AI Chatbot</h1>
+                <form onSubmit={generateAnswer}>
                 <input
                     type="text"
+                    required
                     value={question}
                     onChange={(e) => setQuestion(e.target.value)}
                     onKeyDown={handleKeyDown}
                     className='inputBox'
                     placeholder='Ask me anything'
+                    
                 />
 
                 
@@ -190,9 +208,12 @@ function Homepage() {
                     
                 
                 
-                <button className="button-41" role="button" onClick={generateAnswer}>Generate</button>
+                <button className="button-41" role="button"  type="Submit"
+                >{buttonText}</button>
                 <button className="button-41 clear" role="button" onClick={clearInput}>Clear</button>
                 {loading && <div className="bars"></div>}
+                </form>
+                
                 <div className='result' ref={answerRef}>
                     <p><Markdown>{answer}</Markdown></p>
                     {answer && <button onClick={() => setCopy("Copied")}>{copy}</button>}
