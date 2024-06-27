@@ -22,7 +22,7 @@ function Homepage() {
         // Update question state when transcript changes and listening stops
         if (!listening && transcript) {
             
-            setQuestion(prevQuestion => prevQuestion + transcript);
+            setQuestion(prevQuestion => prevQuestion +" "+ transcript);
            
         }
     }, [transcript, listening]);
@@ -116,6 +116,7 @@ function Homepage() {
         if (listening) {
           SpeechRecognition.stopListening();
           setQuestion(...transcript,transcript); 
+          
           
         } else {
           SpeechRecognition.startListening({ continuous: false });
