@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   build: {
     rollupOptions: {
-      external: ['antd/es/config-provider/DisabledContext'],
+      external: ['./regenerator-runtime/runtime','antd/es/config-provider/DisabledContext'],
     }
     
   },
