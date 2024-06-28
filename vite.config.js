@@ -6,7 +6,7 @@ export default defineConfig({
  
   build: {
     rollupOptions: {
-      external: ['antd/es/config-provider/DisabledContext','/src/components/Homepage.jsx/regenerator-runtime/runtime']
+      external: ['/src/components/Homepage.jsx/regenerator-runtime/runtime']
     }
   },
 
