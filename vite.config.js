@@ -6,7 +6,7 @@ export default defineConfig({
 
   build: {
     rollupOptions: {
-      external: ["/regenerator-runtime/runtime"],
+      external: ["regenerator-runtime/runtime"],
     },
   },
     
