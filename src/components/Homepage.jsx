@@ -67,7 +67,7 @@ function Homepage() {
         setAnswer("loading... it might take up to 10 seconds");
         try {
             const response = await axios({
-                url: `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyCSadOLBV8AtwkeBQwXMsAfWv6vbeLpFzI`,
+                url: `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${import.meta.env.VITE_API_KEY}`,
                 method: "post",
                 data: {
                     contents: [
