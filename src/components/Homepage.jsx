@@ -40,7 +40,7 @@ function Homepage() {
 
     const answerRef = useRef(null);
 
-    // Load history from localStorage on component mount
+    
     useEffect(() => {
         const savedHistory = JSON.parse(localStorage.getItem('chatHistory'));
         if (savedHistory) {
