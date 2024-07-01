@@ -48,7 +48,7 @@ function Homepage() {
         }
     }, []);
 
-    // Save history to localStorage whenever it updates
+    
     useEffect(() => {
         localStorage.setItem('chatHistory', JSON.stringify(history));
     }, [history]);
