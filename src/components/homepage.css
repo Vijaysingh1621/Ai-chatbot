@@ -65,8 +65,11 @@
 .heading {
     font-weight:700;
     font-family: "poppins",Arial, Helvetica, sans-serif;
-    font-size: 2em;
+    font-size: 2.4em;
     margin-bottom: 20px;
+  background: -webkit-linear-gradient(#aeaeae, #141214);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .inputBox {
@@ -226,6 +229,14 @@
     color: black;
 }
 
+.text-gradient{
+    font-size: 25px;
+    font-weight: 600;
+    background: linear-gradient(45deg, #6a1b9a, #8e24aa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 .result button {
     position: absolute;
     top: 10px;
@@ -300,4 +311,13 @@
         font-weight: 600;
         color: black;
     }
+    
+p.text-gradient{
+    font-size: 22px;
+    font-weight: 600;
+    background: linear-gradient(45deg, #6a1b9a, #8e24aa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
+}
+
