@@ -184,7 +184,7 @@ function Homepage() {
                     </div>
                     <button className="button-41" role="button" type="Submit">{buttonText}</button>
                     <button className="button-41 clear" role="button" onClick={clearInput}>Clear</button>
-                    {loading && <div class="loader"></div>}
+                    {loading && <div className="bars"></div>}
                 </form>
                 <div className='result' ref={answerRef}>
                     {answer?( <div><p><Markdown>{answer}</Markdown></p> {answer && <button onClick={() => setCopy("Copied")}>{copy}</button>}</div> ):(<p className="text-gradient">Hii,<br/>How  can I help you Today?</p>)}
