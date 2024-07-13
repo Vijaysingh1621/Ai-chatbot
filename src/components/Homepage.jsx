@@ -6,26 +6,13 @@ import axios from 'axios';
 import Markdown from 'react-markdown';
 
 import { SignedIn, SignedOut, SignInButton, UserButton,useSignIn ,useUser} from "@clerk/clerk-react";
-import { Button } from "antd";
+
 
 
 function Homepage() {
-    const { isLoaded} = useSignIn();
+    const { isLoaded, signIn} = useSignIn();
     const { isSignedIn, user } = useUser();
    
-    const signIn = useSignIn();
-
-  
-    const handleSignIn = async () => {
-        try {
-          const { userId } = await signIn({
-            // Your sign in options here
-          });
-          console.log(`Signed in as ${userId}`);
-        } catch (error) {
-          console.error(error);
-        }
-      };
 
   
     const {
