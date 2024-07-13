@@ -1,7 +1,8 @@
+
 .container_box {
     display: flex;
     flex-direction: row;
-    font-family: "poppins", sans-serif;
+    font-family: "poppins", Arial, Helvetica, sans-serif;
     
     
 }
@@ -247,6 +248,8 @@
     -webkit-text-fill-color: transparent;
 }
 
+
+
 .result button {
     position: absolute;
     top: 10px;
@@ -345,6 +348,8 @@ p.text-gradient{
 }
 
 
+
+
 .loader, .loader:before, .loader:after {
     border-radius: 50%;
     width: 2.2em;
@@ -383,12 +388,15 @@ p.text-gradient{
   }
 
   .sign_in_button{
-    background-color: rgb(2, 157, 240);
+    background-color: rgb(67, 67, 67);
     color: rgb(255, 255, 255);
     font-size: 15px;
     border-radius: 10px;
     border: none;
     padding: 10px;
     font-family: "poppins",Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    padding-right: 20px;
+    padding-left: 20px;
 
   }
