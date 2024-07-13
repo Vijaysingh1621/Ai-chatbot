@@ -4,15 +4,30 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 import './homepage.css';
 import axios from 'axios';
 import Markdown from 'react-markdown';
+
 import { SignedIn, SignedOut, SignInButton, UserButton,useSignIn ,useUser} from "@clerk/clerk-react";
+import { color } from "framer-motion";
 
 function Homepage() {
-      const { signIn } = useSignIn();
+    const { isLoaded, signIn } = useSignIn();
+    const user = useUser();
+    console.log(user )
+   
 
-      const handleSignIn = () => {
-        signIn();
-    };
+  if (!isLoaded) {
+    // Add logic to handle loading state
+    return null;
+  }
 
+  const handleSignIn = async () => {
+    try {
+      await signIn.start({
+        strategy: "oauth_google",
+      });
+    } catch (error) {
+      console.error("Error starting sign-in flow:", error);
+    }
+  };
     const {
         transcript,
         listening,
@@ -153,7 +168,7 @@ function Homepage() {
         <SignedIn>
         <div className="container_box">
             <div className="sidebar">
-            <div className="user_icon" >{useUser}<UserButton/></div>
+            <div className="user_icon" style={{marginTop:"10px"}}><UserButton/></div>
                 <h2>History</h2>
                 
                 <button className="clear_button" onClick={clearHistory}>Clear History</button>
@@ -207,8 +222,10 @@ function Homepage() {
             <SignedOut>
             <div className="containerBox">
             <div className="main_content">
-            <div className="user_login" style={{display:"flex" ,justifyContent:"end",gap:"10px",fontSize:"20px",cursor:"pointer"}} >
-               <SignInButton/>
+            <SignInButton className="sign_in_button"/>
+            {/*<div className="user_login" style={{display:"flex" ,justifyContent:"end",gap:"10px",fontSize:"20px",cursor:"pointer"}}onClick={handleSignIn} >
+               
+               
                                                         <svg fill="gray" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
                                         width="24px" height="24px" viewBox="0 0 43.028 43.028"
                                         xml:space="preserve">
@@ -225,7 +242,7 @@ function Homepage() {
                                         <path d="M10.4697 9.53033C10.1768 9.23744 10.1768 8.76256 10.4697 8.46967C10.7626 8.17678 11.2374 8.17678 11.5303 8.46967L14.5303 11.4697C14.8232 11.7626 14.8232 12.2374 14.5303 12.5303L11.5303 15.5303C11.2374 15.8232 10.7626 15.8232 10.4697 15.5303C10.1768 15.2374 10.1768 14.7626 10.4697 14.4697L12.1893 12.75H4C3.58579 12.75 3.25 12.4142 3.25 12C3.25 11.5858 3.58579 11.25 4 11.25H12.1893L10.4697 9.53033Z" fill="gray"/>
                                         </svg>
                                         </div>
-                                </div>
+                                </div>*/}
                 <h1 className="heading">AI Chatbot</h1>
                 <form onSubmit={(event) => { event.preventDefault(); generateAnswer(question); }}>
                     <input

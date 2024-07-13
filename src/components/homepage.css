@@ -381,3 +381,14 @@ p.text-gradient{
     0%, 80%, 100% { box-shadow: 0 2.5em 0 -1.3em }
     40% { box-shadow: 0 2.5em 0 0 }
   }
+
+  .sign_in_button{
+    background-color: rgb(2, 157, 240);
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    font-family: "poppins",Arial, Helvetica, sans-serif;
+
+  }
