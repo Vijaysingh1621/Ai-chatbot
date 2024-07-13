@@ -1,20 +1,12 @@
-.container_box {
-    display: flex;
-    flex-direction: row;
-    font-family: "poppins", sans-serif;
-    
-    
-}
 .containerBox {
     display: flex;
     flex-direction: row;
-    font-family: "poppins", sans-serif;
+    font-family: "poppins",Arial, sans-serif;
     justify-content: center;
     align-items: center;
     
     
 }
-
 
 .sidebar {
     width: 25%;
@@ -65,16 +57,18 @@
 }
 
 
+
 .main_content {
     width: 75%;
     padding: 20px;
     height: 92vh;
+
 }
 
 .heading {
     font-weight:700;
     font-family: "poppins",Arial, Helvetica, sans-serif;
-    font-size: 2.4em;
+    font-size: 2.6em;
     margin-bottom: 20px;
   background: -webkit-linear-gradient(#aeaeae, #141214);
   -webkit-background-clip: text;
@@ -228,7 +222,6 @@
     background-color: #f9f9f9;
     width: 80%;
     position: relative;
-    
 }
 
 .result p {
@@ -351,17 +344,16 @@ p.text-gradient{
     height: 2.2em;
     animation-fill-mode: both;
     animation: bblFadInOut 1.8s infinite ease-in-out;
-    margin-bottom: 20px;
   }
   .loader {
-    color: #979797;
+    color: #b6b6b6;
     font-size: 5px;
     position: relative;
     text-indent: -9999em;
     transform: translateZ(0);
     animation-delay: -0.16s;
     margin-left: 25px;
-    
+    margin-bottom: 10px;
   }
   .loader:before,
   .loader:after {
