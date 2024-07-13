@@ -6,7 +6,7 @@ import axios from 'axios';
 import Markdown from 'react-markdown';
 
 import { SignedIn, SignedOut, SignInButton, UserButton,useSignIn ,useUser} from "@clerk/clerk-react";
-import { color } from "framer-motion";
+
 
 function Homepage() {
     const { isLoaded, signIn } = useSignIn();
@@ -14,20 +14,7 @@ function Homepage() {
     console.log(user )
    
 
-  if (!isLoaded) {
-    // Add logic to handle loading state
-    return null;
-  }
-
-  const handleSignIn = async () => {
-    try {
-      await signIn.start({
-        strategy: "oauth_google",
-      });
-    } catch (error) {
-      console.error("Error starting sign-in flow:", error);
-    }
-  };
+  
     const {
         transcript,
         listening,
