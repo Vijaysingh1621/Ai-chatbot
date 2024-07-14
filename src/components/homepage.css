@@ -26,6 +26,23 @@
    
 }
 
+.log-out-button{
+    background-color: rgb(120, 114, 114);
+    border-radius: 20px;
+    font-size: 14px;
+    border: none;
+    color: white;
+    padding:10px;
+    height: 30px;
+    width:80px;
+    box-shadow: 2px 2px #848484;
+    transition: .5s;
+}
+
+.log-out-button:hover{
+    background-color: rgb(255, 0, 0);
+}
+
 .sidebar h2 {
     font-size: 1.5em;
     margin-bottom: 10px;
