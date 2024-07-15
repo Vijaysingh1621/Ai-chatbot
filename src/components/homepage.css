@@ -1,8 +1,11 @@
+body{
+    font-family: "poppins";
+}
 
 .container_box {
     display: flex;
     flex-direction: row;
-    font-family: "poppins", Arial, Helvetica, sans-serif;
+    font-family: "poppins",  Helvetica, sans-serif;
     
     
 }
@@ -35,7 +38,7 @@
     padding:10px;
     height: 30px;
     width:80px;
-    box-shadow: 2px 2px #848484;
+   
     transition: .5s;
 }
 

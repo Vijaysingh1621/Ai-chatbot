@@ -4,20 +4,11 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 import "./Userpage.css"
 import axios from 'axios';
 import Markdown from 'react-markdown';
-import { useNavigate } from "react-router-dom";
-import { SignedIn, SignedOut, SignIn, SignInButton, UserButton } from "@clerk/clerk-react";
+import { SignedIn, SignedOut, SignInButton, SignOutButton, UserButton,useSignIn ,useUser} from "@clerk/clerk-react";
 
 
 function UserPage() {
 
-    const navigate = useNavigate();
-
-    const loginPage = () => {
-       
-      
-       navigate("/homepage");
-        
-    }
     const {
         transcript,
         listening,
@@ -157,53 +148,57 @@ function UserPage() {
     return (
         
         <div className="containerBox">
-            <div className="main_content">
-            <div className="user_login" style={{display:"flex" ,justifyContent:"end",gap:"10px",fontSize:"20px",cursor:"pointer"}} onClick={()=>loginPage()}>
-                                                        <svg fill="gray" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-                                        width="24px" height="24px" viewBox="0 0 43.028 43.028"
-                                        xml:space="preserve">
-                                 <g>
-                                        <path d="M39.561,33.971l-0.145,0.174c-4.774,5.728-11.133,8.884-17.902,8.884c-6.77,0-13.128-3.155-17.903-8.884l-0.144-0.174
-                                            l0.034-0.223c0.922-6.014,4.064-10.845,8.847-13.606l0.34-0.196l0.271,0.284c2.259,2.37,5.297,3.674,8.554,3.674
-                                            s6.295-1.305,8.554-3.674l0.271-0.284l0.34,0.196c4.783,2.761,7.925,7.592,8.848,13.606L39.561,33.971z M21.514,21.489
-                                            c5.924,0,10.744-4.82,10.744-10.744C32.258,4.821,27.438,0,21.514,0S10.77,4.821,10.77,10.744S15.59,21.489,21.514,21.489z"/>
-                                    </g>
-                                    </svg>Login
-                                    <div className="login-icon" style={{marginTop:"-0px"}}>
-                                    <svg  width="30px" height="30px" viewBox="0 0 24 24" fill="gray" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12 3.25C11.5858 3.25 11.25 3.58579 11.25 4C11.25 4.41421 11.5858 4.75 12 4.75C16.0041 4.75 19.25 7.99594 19.25 12C19.25 16.0041 16.0041 19.25 12 19.25C11.5858 19.25 11.25 19.5858 11.25 20C11.25 20.4142 11.5858 20.75 12 20.75C16.8325 20.75 20.75 16.8325 20.75 12C20.75 7.16751 16.8325 3.25 12 3.25Z" fill="gray"/>
-                                        <path d="M10.4697 9.53033C10.1768 9.23744 10.1768 8.76256 10.4697 8.46967C10.7626 8.17678 11.2374 8.17678 11.5303 8.46967L14.5303 11.4697C14.8232 11.7626 14.8232 12.2374 14.5303 12.5303L11.5303 15.5303C11.2374 15.8232 10.7626 15.8232 10.4697 15.5303C10.1768 15.2374 10.1768 14.7626 10.4697 14.4697L12.1893 12.75H4C3.58579 12.75 3.25 12.4142 3.25 12C3.25 11.5858 3.58579 11.25 4 11.25H12.1893L10.4697 9.53033Z" fill="gray"/>
-                                        </svg>
-                                        </div>
-                                </div>
-                <h1 className="heading">AI Chatbot</h1>
-                <form onSubmit={(event) => { event.preventDefault(); generateAnswer(question); }}>
-                    <input
-                        type="text"
-                        required
-                        value={question}
-                        onChange={(e) => setQuestion(e.target.value)}
-                        onKeyDown={handleKeyDown}
-                        className='inputBox'
-                        placeholder='Ask me anything'
-                    />
-                    <div className="mic_icon" onClick={handleListen} style={{ backgroundColor: listening ? "red" : "#ECECEC" }}>
-                        <svg style={{ marginLeft: "8px", marginRight: "10px", marginTop: "6px", marginBottom: "-7px" }} xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill={listening ? "white" : "currentColor"} className="bi bi-mic" viewBox="0 0 16 16">
-                            <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5" />
-                            <path d="M10 8a2 2 0 1 1-4 0V3a2 2 0 1 1 4 0zM8 0a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V3a3 3 0 0 0-3-3" />
-                        </svg>
-                    </div>
-                    <button className="button-41" role="button" type="Submit">{buttonText}</button>
-                    <button className="button-41 clear" role="button" onClick={clearInput}>Clear</button>
-                    {loading && <div className="loader"></div>}
-                </form>
-                <div className='result' ref={answerRef}>
-                    {answer?( <div><p><Markdown>{answer}</Markdown></p> {answer && <button onClick={() => setCopy("Copied")}>{copy}</button>}</div> ):(<p className="text-gradient">Hii,<br/>How  can I help you Today?</p>)}
-                   
-                   
+        <div className="main_content">
+        <SignInButton><div className="user_login" style={{display:"flex" ,justifyContent:"end", alignItems:"center",gap:"10px",fontSize:"16px",fontWeight:"500",cursor:"pointer"}} >
+           
+           
+                                    <svg fill="gray" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                            width="24px" height="24px" viewBox="0 0 43.028 43.028"
+                            xml:space="preserve">
+                            <g>
+                            <path d="M39.561,33.971l-0.145,0.174c-4.774,5.728-11.133,8.884-17.902,8.884c-6.77,0-13.128-3.155-17.903-8.884l-0.144-0.174
+                            l0.034-0.223c0.922-6.014,4.064-10.845,8.847-13.606l0.34-0.196l0.271,0.284c2.259,2.37,5.297,3.674,8.554,3.674
+                            s6.295-1.305,8.554-3.674l0.271-0.284l0.34,0.196c4.783,2.761,7.925,7.592,8.848,13.606L39.561,33.971z M21.514,21.489
+                            c5.924,0,10.744-4.82,10.744-10.744C32.258,4.821,27.438,0,21.514,0S10.77,4.821,10.77,10.744S15.59,21.489,21.514,21.489z"/>
+                            </g>
+                            </svg>Login
+
+                            <svg  width="24px" height="24px" viewBox="0 0 24 24" fill="gray" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 3.25C11.5858 3.25 11.25 3.58579 11.25 4C11.25 4.41421 11.5858 4.75 12 4.75C16.0041 4.75 19.25 7.99594 19.25 12C19.25 16.0041 16.0041 19.25 12 19.25C11.5858 19.25 11.25 19.5858 11.25 20C11.25 20.4142 11.5858 20.75 12 20.75C16.8325 20.75 20.75 16.8325 20.75 12C20.75 7.16751 16.8325 3.25 12 3.25Z" fill="gray"/>
+                            <path d="M10.4697 9.53033C10.1768 9.23744 10.1768 8.76256 10.4697 8.46967C10.7626 8.17678 11.2374 8.17678 11.5303 8.46967L14.5303 11.4697C14.8232 11.7626 14.8232 12.2374 14.5303 12.5303L11.5303 15.5303C11.2374 15.8232 10.7626 15.8232 10.4697 15.5303C10.1768 15.2374 10.1768 14.7626 10.4697 14.4697L12.1893 12.75H4C3.58579 12.75 3.25 12.4142 3.25 12C3.25 11.5858 3.58579 11.25 4 11.25H12.1893L10.4697 9.53033Z" fill="gray"/>
+                            </svg>
+
+                            </div></SignInButton>
+                                    
+            <h1 className="heading">AI Chatbot</h1>
+            <form onSubmit={(event) => { event.preventDefault(); generateAnswer(question); }}>
+                <input
+                    type="text"
+                    required
+                    value={question}
+                    onChange={(e) => setQuestion(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                    className='inputBox'
+                    placeholder='Ask me anything'
+                />
+                <div className="mic_icon" onClick={handleListen} style={{ backgroundColor: listening ? "red" : "#ECECEC" }}>
+                    <svg style={{ marginLeft: "8px", marginRight: "10px", marginTop: "6px", marginBottom: "-7px" }} xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill={listening ? "white" : "currentColor"} className="bi bi-mic" viewBox="0 0 16 16">
+                        <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5" />
+                        <path d="M10 8a2 2 0 1 1-4 0V3a2 2 0 1 1 4 0zM8 0a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V3a3 3 0 0 0-3-3" />
+                    </svg>
                 </div>
+                <button className="button-41" role="button" type="Submit">{buttonText}</button>
+                <button className="button-41 clear" role="button" onClick={clearInput}>Clear</button>
+                {loading && <div className="loader"></div>}
+            </form>
+            <div className='result' ref={answerRef}>
+                {answer?( <div><p><Markdown>{answer}</Markdown></p> {answer && <button onClick={() => setCopy("Copied")}>{copy}</button>}</div> ):(<p className="text-gradient">Hii,<br/>How  can I help you Today?</p>)}
+               
+               
             </div>
         </div>
+    </div>
+
     );
 }
 
