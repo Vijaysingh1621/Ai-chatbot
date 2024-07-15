@@ -11,12 +11,14 @@
   },
   "dependencies": {
     "@clerk/clerk-react": "^5.2.7",
+    "antd": "^5.19.2",
     "axios": "^1.7.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-markdown": "^9.0.1",
     "react-router-dom": "^6.24.1",
     "react-speech-recognition": "^3.10.0",
+    "react-toastify": "^10.0.5",
     "regenerator-runtime": "^0.14.1"
   },
   "devDependencies": {
