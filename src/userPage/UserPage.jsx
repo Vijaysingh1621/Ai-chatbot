@@ -5,6 +5,7 @@ import "./Userpage.css"
 import axios from 'axios';
 import Markdown from 'react-markdown';
 import { SignedIn, SignedOut, SignInButton, SignOutButton, UserButton,useSignIn ,useUser} from "@clerk/clerk-react";
+import Card from "../components/cards/Card";
 
 
 function UserPage() {
@@ -193,9 +194,8 @@ function UserPage() {
             </form>
             <div className='result' ref={answerRef}>
                 {answer?( <div><p><Markdown>{answer}</Markdown></p> {answer && <button onClick={() => setCopy("Copied")}>{copy}</button>}</div> ):(<p className="text-gradient">Hii,<br/>How  can I help you Today?</p>)}
-               
-               
             </div>
+            {answer?null:<Card/>}
         </div>
     </div>
 

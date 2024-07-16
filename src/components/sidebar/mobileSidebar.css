@@ -1,0 +1,101 @@
+/* Sidebar styles */
+.sidebar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 100%;
+    background-color: #2d3748; /* Equivalent to bg-gray-800 in Tailwind */
+    transition: transform 0.3s ease-in-out;
+}
+
+.sidebar-hidden {
+    transform: translateX(-100%);
+}
+
+.sidebar-visible {
+    transform: translateX(0);
+}
+
+.sidebar-toggle-btn {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 50;
+}
+
+@media (min-width: 1024px) {
+    .sidebar-container {
+        transform: translateX(0);
+    }
+}
+
+
+
+.sidebar {
+    display: block;
+    width: 25%;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-right: 1px solid #ddd;
+    height: auto;
+   
+}
+
+.log-out-button{
+    background-color: rgb(120, 114, 114);
+    border-radius: 20px;
+    font-size: 14px;
+    border: none;
+    color: white;
+    padding:10px;
+    height: 30px;
+    width:80px;
+   
+    transition: .5s;
+}
+
+.log-out-button:hover{
+    background-color: rgb(255, 0, 0);
+}
+
+.sidebar h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar li {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.sidebar p {
+    position: relative;
+    margin: 5px 0;
+    
+}
+
+.sidebar button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.copy-btn{
+    margin-left: 250px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+}
