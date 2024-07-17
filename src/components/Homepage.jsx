@@ -8,7 +8,8 @@ import { SignedIn, SignedOut, SignInButton, SignOutButton, UserButton,useSignIn 
 import UserPage from "../userPage/UserPage";
 import { Button } from "antd";
 import Card from "./cards/Card";
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { FaBars } from "react-icons/fa6";
+import { CgClose } from "react-icons/cg";
 import gemeni from "../assets/gemeni.png"
 
 
@@ -164,11 +165,11 @@ function Homepage() {
             
         <div className="sidebar-toggle-btn">
                 <button style={{border:"none",}} onClick={toggleSidebar}>
-                    {isOpen ? <FaTimes size={24} color="black" /> : <FaBars size={24} color="black" />}
+                    {isOpen ? <CgClose size={24} color="black" /> : <FaBars size={24} color="black" />}
                 </button>
                 {isOpen?<div className="nav_background" >
                     <button style={{border:"none"}}  onClick={toggleSidebar}>
-                    {isOpen ? <FaTimes size={24} color="black" /> : null}
+                    {isOpen ? <CgClose size={24} color="black" /> : null}
                 </button>
 
                 <h2 style={{marginTop:"20px"}}>History</h2>
@@ -178,7 +179,7 @@ function Homepage() {
             </div>
             
             <div className="user_info">
-            <div  style={{ fontSize:"22px",fontWeight:"500", display:"flex", justifyContent:"start", alignItems:"center",marginLeft:'120px',gap:"10px",paddingBottom:"15px"}}> {isLoaded && user ? user.fullName : "Loading..."}<UserButton/><SignOutButton><Button danger>Log Out</Button></SignOutButton></div>
+            <div  style={{ fontSize:"22px",fontWeight:"500", display:"flex", justifyContent:"end", alignItems:"center",gap:"10px",paddingBottom:"15px",paddingRight:"30px"}}> {isLoaded && user ? user.fullName : "Loading..."}<UserButton/><SignOutButton><Button danger>Log Out</Button></SignOutButton></div>
             </div>
             <div className={`sidebar-container ${isOpen ? 'sidebar-visible' : 'sidebar-hidden'}`}>
             <div className="sidebar_for_mobile">
@@ -188,10 +189,7 @@ function Homepage() {
                         {history.map((entry, index) => (
                             <li key={index}>
                                 <p>
-                                <img style={{borderRadius:"50%", height:"30px",width:"30px",marginTop:"10px"}} src={isLoaded && user?user.imageUrl:null} alt="Profile" />
-                                    
-
-                                     {entry.question}</p>
+                                <img style={{borderRadius:"50%", height:"30px",width:"30px",marginTop:"20px" ,marginRight:"10px"}} src={isLoaded && user?user.imageUrl:null} alt="Profile" />{entry.question}</p>
                                 <p><img src={gemeni} height="24px" width="24px"></img> <Markdown>{entry.answer}</Markdown>
                                     <button className='copy-btn' onClick={() => copyToClipboard(index)}>{entry.copy}</button>
                                 </p>

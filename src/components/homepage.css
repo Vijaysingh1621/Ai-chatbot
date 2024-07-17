@@ -488,9 +488,9 @@ p.text-gradient{
     display: block;
     z-index: 60;
     position: fixed;
+    width: 100%;
     top: 0rem;
     left: 0rem;
-    width: 100%;
     background-color:#f7f6f2;
     padding: 10px;
     border-bottom: solid rgb(163, 163, 163) 1px;
