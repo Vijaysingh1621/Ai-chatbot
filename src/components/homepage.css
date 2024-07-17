@@ -2,6 +2,7 @@ body{
     font-family: "poppins";
 }
 
+
 .container_box {
     display: flex;
     flex-direction: row;
@@ -232,37 +233,46 @@ body{
 .delete_button:hover{
     background-color: #92170f;
 }
-.bars {
-    width: 38.4px;
-    height: 34.2px;
-    margin-left: 10px;
-    --c: linear-gradient(#474bff  0 0);
-    background: var(--c) 0%   50%,
-         var(--c) 50%  50%,
-         var(--c) 100% 50%;
-    background-size: 10.1px 50%;
-    background-repeat: no-repeat;
-    animation: bars-wk19tf 1s infinite linear;
- }
- 
- @keyframes bars-wk19tf {
-    20% {
-       background-position: 0% 0%  ,50% 50% ,100% 50%;
+/* This keyframe will create the initial slide animation  */
+@keyframes expanding {
+    0% {
+        transform: scaleX(0);
+        opacity: 0;
     }
- 
-    40% {
-       background-position: 0% 100%,50% 0%  ,100% 50%;
+    100% {
+        transform: scaleX(1);
+        opacity: 1;
     }
+}
  
-    60% {
-       background-position: 0% 50% ,50% 100%,100% 0%;
+/* This keyframe will create the loading gradient effect */
+@keyframes moving {
+    0% {
+        background-position: 0 0;
     }
- 
-    80% {
-       background-position: 0% 50% ,50% 50% ,100% 100%;
+    100% {
+        background-position: -200% 0;
     }
- }
+}
 
+.loader-container {
+    margin-top: 5px;
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Gap between loader bars */
+}
+
+.loading-bar {
+    height: 1.25rem;
+    width: 90%; /* Adjust width as needed */
+    transform-origin: left;
+    animation: expanding 0.4s 0.7s forwards linear, moving 1s 1s infinite forwards linear;
+    border-radius: 0.125rem;
+    background-image: linear-gradient(to right, #eff6ff 30%, #2563eb60 60%, #eff6ff);
+    background-size: 200% auto;
+    opacity: 0;
+}
 
 
 .result {
@@ -360,13 +370,13 @@ body{
     }
 
     .history_record{
-        margin-top: 120px;
+        margin-top: 140px;
     }
 
     .main_content {
         width: auto;
         padding: 20px;
-        margin-top: 30px;
+        margin-top: 50px;
     }
    
     .inputBox{
@@ -460,7 +470,7 @@ p.text-gradient{
     background-color:#f7f6f2;
     padding: 10px;
     width: 100%;
-    border-bottom: solid black 1px;
+    border-bottom: solid rgb(163, 163, 163) 1px;
 }
 
 .sidebar-toggle-btn {
@@ -469,6 +479,7 @@ p.text-gradient{
     position: fixed;
     top: 1rem;
     left: 1rem;
+    
    
 }
 
@@ -479,9 +490,10 @@ p.text-gradient{
     position: fixed;
     top: 0rem;
     left: 0rem;
+    width: 100%;
     background-color:#f7f6f2;
     padding: 10px;
-    border-bottom: solid black 1px;
+    border-bottom: solid rgb(163, 163, 163) 1px;
 }
 @media (min-width: 1024px) {
     .sidebar-container {

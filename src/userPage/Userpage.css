@@ -182,6 +182,53 @@
 .delete_button:hover{
     background-color: #92170f;
 }
+
+
+
+/* This keyframe will create the initial slide animation  */
+@keyframes expanding {
+    0% {
+        transform: scaleX(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scaleX(1);
+        opacity: 1;
+    }
+}
+ 
+/* This keyframe will create the loading gradient effect */
+@keyframes moving {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+.loader-container {
+    margin-top: 5px;
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Gap between loader bars */
+}
+
+.loading-bar {
+    height: 1.25rem;
+    width: 90%; /* Adjust width as needed */
+    transform-origin: left;
+    animation: expanding 0.4s 0.7s forwards linear, moving 1s 1s infinite forwards linear;
+    border-radius: 0.125rem;
+    background-image: linear-gradient(to right, #eff6ff 30%, #2563eb60 60%, #eff6ff);
+    background-size: 200% auto;
+    opacity: 0;
+}
+
+
+
+
 .bars {
     width: 38.4px;
     height: 34.2px;

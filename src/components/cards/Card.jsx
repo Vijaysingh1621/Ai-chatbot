@@ -1,11 +1,37 @@
 import React from 'react'
 import "./card.css"
 
-const Card = () => {
+
+const Card = ({ generateAnswer,setQuestion }) => {
+
+  const handleClickFact = () => {
+    // Generate a question or input for the AI
+    const question = " Fun fact about the animals";
+    // Call the generateAnswer function from the Homepage component
+    setQuestion(question)
+    generateAnswer(question);
+  };
+
+  const handleClickStudy = () => {
+    // Generate a question or input for the AI
+    const question = "Explain what is a semiconductor?";
+    // Call the generateAnswer function from the Homepage component
+    setQuestion(question)
+    generateAnswer(question);
+  };
+
+  const handleClickInnovation = () => {
+    // Generate a question or input for the AI
+    const question = " Give me tips how to grow my youtube channel";
+    // Call the generateAnswer function from the Homepage component
+    setQuestion(question)
+    generateAnswer(question);
+  };
+
   return (
     <div>
       <div className="grid">
-        <div className="card no1">
+        <div className="card no1" onClick={handleClickFact}>
           <span className="icon">
                           <svg version="1.1" viewBox="0 0 2048 2048" width="55px" height="55px" xmlns="http://www.w3.org/2000/svg">
                 <path transform="translate(1401,80)" d="m0 0h19l34 2 33 4 36 7 33 9 32 11 28 12 28 14 21 12 27 18 11 8 13 10 11 9 10 9 8 7 15 14 15 16 12 14 13 16 13 18 10 15 13 21 15 28 12 26 10 26 4 9 24 16 16 12 10 9 8 7 17 17 9 11 14 18 11 18 9 16 10 21 7 18 8 28 4 20 3 26 1 23v992l-1 27-3 24-6 28-7 22-10 25-10 20-14 23-12 16-9 11-12 13-16 16-11 9-13 10-15 10-17 10-16 8-18 8-27 9-26 6-19 3-22 2h-1442l-22-2-24-4-23-6-21-7-17-7-19-10-16-9-16-11-13-10-10-9-8-7-17-17-18-22-14-21-12-21-11-24-11-33-6-27-3-23-1-13v-619l6-10 8-6 9-2v-26l-12-5-8-8-3-7v-46l3-7 7-8 8-4 5-2v-25l-11-4-7-6-4-7-1-2v-230l2-23 4-23 6-24 8-23 8-19 12-22 10-16 10-14 8-10 12-14 20-20 11-9 13-10 18-12 21-12 19-9 27-10 32-8 19-3 25-2h499l154-1 7-15 12-24 16-27 12-18 13-18 13-16 9-11 14-15 24-24 8-7 13-11 20-15 14-10 17-11 17-10 16-9 29-14 33-13 28-9 28-7 31-6 33-4 11-1z" fill="#F7F7F9"/>
@@ -72,8 +98,8 @@ const Card = () => {
             <div className="line line-3"></div>
           </div>
         </div>
-        <div className="card">
-          <span className="icon">
+        <div className="card" onClick={handleClickStudy}>
+          <span className="icon" >
                     <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 256 256" viewBox="0 0 256 256" id="graduation-hat"><path fill="#fcd224" d="M229.1,155.3c-1.6,0-2.9-1.3-2.9-2.9v-44.6c0-1.6,1.3-2.9,2.9-2.9s2.9,1.3,2.9,2.9v44.6
                     C232.1,154,230.7,155.3,229.1,155.3z"></path><path fill="#454a4f" d="M49.9,110.2v51.8c0,14.3,35,26,78.1,26s78.1-11.6,78.1-26v-51.8H49.9z"></path><path fill="#5d6168" d="M242,109.9l-105,32.3c-5.9,1.8-12.1,1.8-18,0L14,109.9c-4-1.2-4-6.9,0-8.1l105-32.3c5.9-1.8,12.1-1.8,18,0
                     l105,32.3C246,103,246,108.7,242,109.9z"></path><path fill="#ffe471" d="M238.6,158.6c0,7.4-4.3,17.3-9.5,17.3c-5.3,0-9.5-9.9-9.5-17.3s4.3-9.5,9.5-9.5
@@ -106,13 +132,13 @@ const Card = () => {
             <div className="line line-3"></div>
           </div>
         </div>
-        <div className="card no_3">
+        <div className="card no_3" onClick={handleClickInnovation}>
           <span className="icon">
           <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 40 40" width="16px" height="16px"><path fill="#ffeea3" d="M14.5,29.833V28c0-1.914-1.168-3.76-2.52-5.897C10.349,19.525,8.5,16.603,8.5,13 C8.5,6.659,13.659,1.5,20,1.5S31.5,6.659,31.5,13c0,3.603-1.849,6.525-3.48,9.103C26.668,24.24,25.5,26.086,25.5,28v1.833H14.5z"/><path fill="#ba9b48" d="M20,2c6.065,0,11,4.935,11,11c0,3.458-1.808,6.315-3.402,8.835C26.262,23.947,25,25.941,25,28v1.333 h-5h-5V28c0-2.059-1.262-4.053-2.598-6.165C10.808,19.315,9,16.458,9,13C9,6.935,13.935,2,20,2 M20,1C13.373,1,8,6.373,8,13 c0,6.667,6,10.958,6,15v2.333h6h6V28c0-4.042,6-8.333,6-15C32,6.373,26.627,1,20,1L20,1z"/><path fill="#fff" d="M22.714,11.335c0.502,0,0.974,0.195,1.329,0.55c0.733,0.733,0.733,1.925,0,2.657l-1.75,1.75 L22,16.586V17v12h-4V17v-0.414l-0.293-0.293l-1.75-1.75c-0.733-0.733-0.733-1.925,0-2.657c0.355-0.355,0.827-0.55,1.329-0.55 c0.502,0,0.974,0.195,1.329,0.55l0.679,0.679L20,13.271l0.707-0.707l0.679-0.679C21.741,11.531,22.212,11.335,22.714,11.335 M22.714,10.335c-0.737,0-1.474,0.281-2.036,0.843L20,11.857l-0.679-0.679c-0.562-0.562-1.299-0.843-2.036-0.843 c-0.737,0-1.474,0.281-2.036,0.843c-1.124,1.124-1.124,2.947,0,4.071L17,17v13h6V17l1.75-1.75c1.124-1.124,1.124-2.947,0-4.071 C24.188,10.616,23.451,10.335,22.714,10.335L22.714,10.335z"/><path fill="#8b75a1" d="M20 31A4 4 0 1 0 20 39A4 4 0 1 0 20 31Z"/><path fill="#dcd5f2" d="M17,36.5c-1.378,0-2.5-1.122-2.5-2.5v-5.5h11V34c0,1.378-1.122,2.5-2.5,2.5H17z"/><path fill="#8b75a1" d="M25,29v5c0,1.103-0.897,2-2,2h-6c-1.103,0-2-0.897-2-2v-5H25 M26,28H14v6c0,1.657,1.343,3,3,3h6 c1.657,0,3-1.343,3-3V28L26,28z"/><path fill="#8b75a1" d="M19 34H25.488V35H19zM14.56 34H17V35H14.56zM19 32H26V33H19zM14 32H17V33H14zM19 30H26V31H19zM14 30H17V31H14z"/></svg>
           </span>
           <h4>Innovation</h4>
           <p>
-           Explain what is Semiconductors
+          Give me tips how to grow my youtube channel
           </p>
           <div className="shine"></div>
           <div className="background">
